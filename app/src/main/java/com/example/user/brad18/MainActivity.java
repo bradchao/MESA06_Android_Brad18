@@ -43,14 +43,19 @@ public class MainActivity extends AppCompatActivity {
     public void stop(View v){
         Intent it = new Intent(this, MyService.class);
         stopService(it);
+
     }
 
     private class MyReceiver extends BroadcastReceiver {
         @Override
         public void onReceive(Context context, Intent intent) {
             int len = intent.getIntExtra("len", -1);
+            int now = intent.getIntExtra("now", -1);
             if (len>0){
                 seekbar.setMax(len);
+            }
+            if (now>0){
+                seekbar.setProgress(now);
             }
         }
     }
