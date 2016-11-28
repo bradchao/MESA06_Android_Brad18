@@ -21,6 +21,28 @@ public class MainActivity extends AppCompatActivity {
         seekbar = (SeekBar)findViewById(R.id.seekbar);
         myReceiver = new MyReceiver();
         registerReceiver(myReceiver, new IntentFilter("brad"));
+
+        seekbar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int i, boolean b) {
+                if (b){
+                    Intent it = new Intent(MainActivity.this, MyService.class);
+                    it.putExtra("seekto", i);
+                    startService(it);
+                }
+            }
+
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {
+
+            }
+
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {
+
+            }
+        });
+
     }
 
     @Override
