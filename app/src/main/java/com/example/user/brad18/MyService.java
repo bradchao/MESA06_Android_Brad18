@@ -4,6 +4,7 @@ import android.app.Service;
 import android.content.Intent;
 import android.media.MediaPlayer;
 import android.os.IBinder;
+import android.util.Log;
 
 public class MyService extends Service {
     private MediaPlayer mp;
@@ -19,7 +20,11 @@ public class MyService extends Service {
     public void onCreate() {
         super.onCreate();
 
-       mp = MediaPlayer.create(this, R.raw.te);
+        mp = MediaPlayer.create(this, R.raw.te);
+        int len = mp.getDuration();
+        Intent it = new Intent("brad");
+        it.putExtra("len", len);
+        sendBroadcast(it);
 
     }
 
